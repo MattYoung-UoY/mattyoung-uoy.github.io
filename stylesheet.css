@@ -13,12 +13,11 @@ html{
 
 body{
 	background-color: rgb(255, 255, 255);
-	margin: 0px;
 }
 
 #titleBar{
 	background-color: rgb(160, 210, 255);
-	border-bottom: 2px solid rgb(80, 80, 80);
+	border-bottom: 0.1em solid rgb(80, 80, 80);
 	display: block;
 }
 
@@ -29,14 +28,16 @@ body{
 }
 
 h1{
-	padding: 10px 0px 10px 0px;
+	padding: 0.4em 0 0.4em 0;
+	font-size: 2em;
 }
 
 ul{
 	list-style-type: none;
 	width: 20%;
+	max-width: 15em;
 	background-color: rgb(190, 190, 190);
-	border-right: 2px solid rgb(80, 80, 80);
+	border-right: 0.0em solid rgb(80, 80, 80);
 	position: fixed;
 	overflow: auto;
 }
@@ -46,10 +47,13 @@ li a {
 	text-align: center;
 	text-decoration: none;
 	color: black;
+	font-size: 1.1em;
+	font-weight: bold;
 }
 
 li {
-	border-bottom: 2px solid rgb(80, 80, 80);
+	border-right: 0.1em solid rgb(80, 80, 80);
+	border-bottom: 0.1em solid rgb(80, 80, 80);
 	padding: 2.5% 0 2.5% 0;
 }
 
