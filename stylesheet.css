@@ -12,19 +12,55 @@ html{
 }
 
 body{
-	background-color: rgb(180, 180, 180);
+	background-color: rgb(255, 255, 255);
 	margin: 0px;
 }
 
-hr{
-	border-top: 2px solid rgb(80, 80, 80);
-}
-
 #titleBar{
-	background-color: rgb(120, 195, 220);
-	padding: 10px 0px 10px 0px;
+	background-color: rgb(160, 210, 255);
+	border-bottom: 2px solid rgb(80, 80, 80);
+	display: block;
 }
 
 #title{
 	text-align: center;
+	text-decoration: none;
+	color: black;
+}
+
+h1{
+	padding: 10px 0px 10px 0px;
+}
+
+ul{
+	list-style-type: none;
+	width: 20%;
+	background-color: rgb(190, 190, 190);
+	border-right: 2px solid rgb(80, 80, 80);
+	position: fixed;
+	overflow: auto;
+}
+
+li a {
+	display: block;
+	text-align: center;
+	text-decoration: none;
+	color: black;
+}
+
+li {
+	border-bottom: 2px solid rgb(80, 80, 80);
+	padding: 2.5% 0 2.5% 0;
+}
+
+li:hover{
+	background-color: rgb(160, 160, 160);
+}
+
+.active {
+	background-color: rgb(160, 210, 255);
+}
+
+.active:hover{
+	background-color: rgb(150, 180, 225);
 }
