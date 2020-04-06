@@ -9,22 +9,36 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 html{
 	font-family: "courier new";
+	height: 100%;
 }
 
 body{
 	background-color: rgb(255, 255, 255);
+	height: 100%;
 }
 
 #titleBar{
 	background-color: rgb(160, 210, 255);
 	border-bottom: 0.1em solid rgb(80, 80, 80);
 	display: block;
+	float: top;
 }
 
 #title{
 	text-align: center;
 	text-decoration: none;
 	color: black;
+}
+
+#content{
+	
+}
+
+#navbar{
+	height: 93.3%;
+	width: 20%;
+	max-width: 15em;
+	float: left;
 }
 
 h1{
