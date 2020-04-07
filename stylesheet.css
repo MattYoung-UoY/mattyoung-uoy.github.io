@@ -5,6 +5,8 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     outline: 0;
     vertical-align: baseline;
     background: transparent;
+	text-decoration: none;
+	color: black;
 }
 
 html{
@@ -31,14 +33,16 @@ body{
 }
 
 #content{
-	
+	padding: 0% 0% 0% 2%;
+	width: 77%;
+	float: right;
 }
 
 #navbar{
 	height: 200%;
 	width: 20%;
-	max-width: 15em;
 	float: left;
+	border-right: 0.1em solid rgb(80, 80, 80);
 }
 
 h1{
@@ -46,26 +50,35 @@ h1{
 	font-size: 2em;
 }
 
+h2{
+	text-align: center;
+}
+
+#project:link{
+	color: blue;
+}
+
+#project:visited{
+	color: blue;
+}
+
+#project:hover {
+	text-decoration: underline;
+}
+
 ul{
 	background-color: rgb(190, 190, 190);
-	border-right: 0.0em solid rgb(80, 80, 80);
 	position: sticky;
 	top: 0;
 	overflow: auto;
 }
 
-li a {
-	text-decoration: none;
-	color: black;
-	font-size: 1.1em;
-	font-weight: bold;
-}
-
 li {
 	text-align: center;
-	border-right: 0.1em solid rgb(80, 80, 80);
 	border-bottom: 0.1em solid rgb(80, 80, 80);
 	padding: 2.5% 0 2.5% 0;
+	font-size: 1.1em;
+	font-weight: bold;
 }
 
 li:hover{
