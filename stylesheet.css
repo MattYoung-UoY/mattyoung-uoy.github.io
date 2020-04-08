@@ -54,15 +54,15 @@ h2{
 	text-align: center;
 }
 
-#project:link{
+#niceln:link{
 	color: blue;
 }
 
-#project:visited{
+#niceln:visited{
 	color: blue;
 }
 
-#project:hover {
+#niceln:hover {
 	text-decoration: underline;
 }
 
