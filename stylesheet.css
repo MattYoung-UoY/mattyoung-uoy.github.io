@@ -32,6 +32,17 @@ body{
 	color: black;
 }
 
+#formcontainer{
+	text-align: center;
+}
+
+#formulabox{
+	border: 0.1em solid rgb(80, 80, 80);
+	display: inline-block;
+	width: max-content;
+	background-color: rgb(190, 190, 190);
+}
+
 #content{
 	padding: 0% 2% 0% 2%;
 	width: 75%;
