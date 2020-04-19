@@ -19,12 +19,65 @@
 		</div>
 		<div id="content"><br/>
 			<h2 id="title">Chapter 1 Excercise: Straight Line Language Interpreter</h2><br/>
+			
+			<h3>Specification:</h3><br/>
+			This is the grammar of the Straight-Line Language specified:<br/><br/>
 			<div id="formcontainer">
 				<div id="formulabox">
-					Test Formula more text</br>
-					Lolz
+				Stm -> Stm ; Stm<br/>
+				Stm -> id := Exp<br/>
+				Stm -> print(ExpList)<br/>
+				Exp -> id<br/>
+				Exp -> num<br/>
+				Exp -> Exp Binop Exp<br/>
+				Exp -> (Stm, Exp)<br/>
+				ExpList -> Exp, ExpList<br/>
+				ExpList -> Exp<br/>
+				Binop -> + | - | x | /
 				</div>
-			</div>
+			</div><br/>
+			
+			<h3>Setup:</h3><br/>
+			I began by downloading the skeleton code for this project from <a href="https://www.cs.princeton.edu/~appel/modern/java/chap1/" id="niceln">Andrew Appel's website</a>.<br/>
+			In the Prog class I created a new program (Program 2):<br/><br/>
+			<div id="formcontainer">
+				<div id="formulabox">
+					print((print(3, 3, 3), 3), 3)
+				</div>
+			</div><br/>
+			I created this program to better test my solution to Part 1.<br/>
+			I also re-named the interp class to Main, and the prog class to Prog (to conform with Java naming convention).<br/><br/>
+			
+			<h3>Part 1:</h3><br/>
+			I specified 3 new methods alongside the maxArgsStm method.
+			These methods are:<br/><br/>
+			<div id="formcontainer">
+				<div id="formulabox">
+				expListNestedPrint(ExpList exps)<br/>
+				maxArgsExp(Exp e)<br/>
+				expListLength(ExpList exps)
+				</div>
+			</div><br/>
+			The method expListNestedPrint(ExpList exps) executes maxArgsExp(Exp e) on all of the expressions in the list, and returns the highest value.<br/>
+			The method maxArgsExp(Exp e) returns the maximum number of parameters contained within any print statements, inside of the specified expression.<br/>
+			The method expListLength(ExpList exps) returns the number of expressions in an ExpList. This is used when maxArgsStm finds a Print statement, and will give the maximum number of parameters for that Print statement.<br/>
+			I used these three new methods inside of the maxArgsStm(Stm s) method, dependant on the type of statement that is given to it (Compound, Assignment or Print statement).<br/><br/>
+			
+			<h3>Part 2:</h3>
+			For part 2 I created a Recursive Decent parser.<br/>
+			I created 2 new methods alongside the interpStm(Stm stm, Table table) method:<br/><br/>
+			<div id="formcontainer">
+				<div id="formulabox">
+				interpExp(Exp exp, Table table)<br/>
+				printExps(ExpList exps, Table table)
+				</div>
+			</div><br/>
+			The interp(Stm s) method calls itself on all of the sub-statements, until it reaches an expression, or a Print statement. 
+			It then calls a new interpExp(Exp exp, Table table) or printExps(ExpList exps, Table table) respectively.<br/>
+			The interpExp(Exp exp, Table table) method parses the given expression. The printExps(ExpList exps, Table table) method parses a Print statement.<br/>
+			All of these methods are mutually recursive, or indirectly mutually recursive in the case of interpExp and printExps, as going from interpExp to printExps must first go via a statement, before reaching printExps.<br/>
+			The implementation of the Table class was trivial. The lookup method was implemented using a trivial recursive list-searching algorithm.<br/>
+			The implementation of the IntAndTable class in the Main class was also trivial, and is described in almost 100% detail at the end of the excercise description.
 		</div>
 	</body>
 

@@ -37,6 +37,7 @@ body{
 }
 
 #formulabox{
+	text-align: left;
 	border: 0.1em solid rgb(80, 80, 80);
 	display: inline-block;
 	width: max-content;
@@ -50,7 +51,7 @@ body{
 }
 
 #navbar{
-	height: 200%;
+	height: 210%;
 	width: 20%;
 	float: left;
 	border-right: 0.1em solid rgb(80, 80, 80);
