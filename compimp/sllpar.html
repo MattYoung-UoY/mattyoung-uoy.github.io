@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+	<head>		
+		<title alt="Project Showcase. Matt Young.">Project Showcase - Matt Young</title>
+		<link rel="stylesheet" href="../stylesheet.css">
+		<meta charset="UTF-8">
+	</head>
+
+	<body>
+		<div id="titleBar">
+			<a id="title"  href="../index.html"><h1 alt="Project Showcase. Matt Young.">Project Showcase - Matt Young</h1></a>
+		</div>
+		<div id="navbar">
+			<ul>
+				<a href="../index.html"><li>Home</li></a>
+				<a href="../projects.html"><li>Projects</li></a>
+			</ul>
+		</div>
+		<div id="content"><br/>
+			<h2 id="title">Straight-Line Language Parser</h2><br/>
+			
+			<h3>Setup:</h3><br/>
+			I downloaded the <a href="https://www.cs.princeton.edu/~appel/modern/java/chap3/" id="niceln">skeleton code</a> as per usual. 
+			I then set this up in an Eclipse environment.<br/><br/>
+			
+			<h3>Part 1:</h3><br/>
+			I needed to set up a CUP specification that would produce the grammar for the Straight-Line Language(SLL). 
+			This is easier said than done, as the grammar that is given to CUP (should) be unambiguous.
+			As can be seen from the specification of the SLL in the <a href="cp1ex.html" id="niceln">SLL Interpreter</a>, the grammar production representing an Expression to an Arithmatic Operation is ambiguous:<br/><br/>
+			
+			<div id="formcontainer">
+				<div id="formulabox">
+					Exp -> Exp Binop Exp
+				</div>
+			</div><br/>
+			
+			This is the case as there are two different Parse Trees for the expression:<br/><br/>
+			
+			<div id="formcontainer">
+				<div id="formulabox">
+					1 + 1 + 1
+				</div>
+			</div><br/>
+			
+			This expression can be parsed in two different ways:<br/><br/>
+			
+			<div id="formcontainer">
+				<div id="formulabox">
+					(Exp Binop Exp) Binop Exp<br/>
+					Exp Binop (Exp Binop Exp)
+				</div>
+			</div><br/>
+	
+			hence the ambiguity.<br/>
+			We also have this issue with the grammar production that takes a Statement and produces a list of Statements:<br/><br/>
+
+			<div id="formcontainer">
+				<div id="formulabox">
+					Stm -> Stm ; Stm
+				</div>
+			</div><br/>
+			
+			The expressions that produce multiple different Parse Trees for this grammar production are of the same form as above and trivial, therefore I won't repeat my logic for this one as well.
+			Hopefully the reader is able to see that this grammar production is also a cause of ambiguity in the grammar.<br/>
+			
+			When CUP reads these grammar productions, it does not know which method of parsing to use (the decision is Non-Deterministic).
+			To fix this, we need to rewrite the grammar to be unambiguous.<br/>
+			To fix the list of statements issue, I replace the above grammar production with:<br/><br/>
+			
+			<div id="formcontainer">
+				<div id="formulabox">
+					StmList -> Stm ; StmList<br/>
+					StmList -> 
+				</div>
+			</div><br/>
+			
+			with StmList as the new starting Non-Terminal for the grammar.<br/>
+			With a little mental gymnastics, the reader should be able to see how the Statement:<br/><br/>
+			
+			<div id="formcontainer">
+				<div id="formulabox">
+					Stm ; Stm ; Stm
+				</div>
+			</div><br/>
+			
+			now only has one Parse Tree, and therefore does not produce any ambiguity in the grammar.<br/>
+			The case for the Arithmatic Operations is a little more complicated.
+			The approach I take uses the concept of coercions from another tool called <a href="#" id="niceln">BNFC</a>.
+			
+		</div>
+	</body>
+
+</html>
