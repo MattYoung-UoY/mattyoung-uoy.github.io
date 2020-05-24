@@ -24,7 +24,7 @@
 			I downloaded the <a href="https://www.cs.princeton.edu/~appel/modern/java/chap3/" id="niceln">skeleton code</a> as per usual. 
 			I then set this up in an Eclipse environment.<br/><br/>
 			
-			<h3>Part 1:</h3><br/>
+			<h3>Part 1 - Parser Specification:</h3><br/>
 			I needed to set up a CUP specification that would produce the grammar for the Straight-Line Language(SLL). 
 			This is easier said than done, as the grammar that is given to CUP (should) be unambiguous.
 			As can be seen from the specification of the SLL in the <a href="cp1ex.html" id="niceln">SLL Interpreter</a>, the grammar production representing an Expression to an Arithmatic Operation is ambiguous:<br/><br/>
@@ -86,7 +86,80 @@
 			
 			now only has one Parse Tree, and therefore does not produce any ambiguity in the grammar.<br/>
 			The case for the Arithmatic Operations is a little more complicated.
-			The approach I take uses the concept of coercions from another tool called <a href="#" id="niceln">BNFC</a>.
+			The approach I take uses the concept of coercions from another tool called <a href="#" id="niceln">BNFC</a>.<br/>
+			The following is the resulting grammar productions related to arithmatic expressions:<br/><br/>
+			
+			<div id="formcontainer">
+				<div id="formulabox">
+					exp -> exp SUB exp2<br/>
+					exp -> exp2<br/>
+					<br/>
+					exp2 -> exp2 PLUS exp3<br/>
+					exp2 -> exp3<br/>
+					<br/>
+					exp3 -> exp3 DIV exp4<br/>
+					exp3 -> exp4<br/>
+					<br/>
+					exp4 -> exp4 MULT exp5<br/>
+					exp4 -> exp5<br/>
+					<br/>
+					exp5 -> ID<br/>
+					exp5 -> INT<br/>
+				</div>
+			</div><br/>
+			
+			This method not only produces a non-ambiguous grammar, but also provides a method of providing precedence for the different operators.
+			However, at this stage, I cannot visualise how this ordering of the coercions will affect the resulting precedences, and so I will make adjustments after creating the system to create the Abstract Syntax Tree.<br/>
+			After this, implementing the remaining grammar productions was trivial.
+			If the reader wishes to view the final grammar specification, they can find it at <i>Striaght Line Language Implementation/src/parser/SllParser.cup</i><br/>
+			I then generated the Java code using the CUP tool, and made some modifications to the resulting files to work with my project setup.<br/><br/>
+			
+			<h3>Part 2 - Abstract Syntax Tree Generation:</h3><br/>
+			
+			Now that I have a working parser, I need to implement the Semantic Actions to generate an Abstract Syntax Tree.<br/>
+			The Semantic Actions are pieces of Java code that are specified alongside grammar productions in the CUP specification.
+			They get executed whenever the production rule gets "used" by the parser, and so are perfect for generating the Abstract Syntax Tree.<br/>
+			My first task is to decide which grammar productions need to produce nodes on the Abstract Syntax Tree. My decisions for which productions, and their corresponding values in the abstract syntax tree are shown here:<br/><br/>
+			
+			<div id="formcontainer">
+				<div id="formulabox">
+					stmList -> stm SEMICOLON stmList<br/>
+					Statement<br/>
+					<br/>
+					stm -> assignID ASSIGN exp<br/>
+					Assignment<br/>
+					<br/>
+					stm -> PRINT LPAREN expList RPAREN<br/>
+					Print<br/>
+					<br/>
+					assignID -> ID<br/>
+					ID<br/>
+					<br/>
+					exp -> exp SUB exp2<br/>
+					Subtract<br/>
+					<br/>
+					exp2 -> exp2 PLUS exp3<br/>
+					Plus<br/>
+					<br/>
+					exp3 -> exp3 DIV exp4<br/>
+					Divide<br/>
+					<br/>
+					exp4 -> exp4 MULT exp5<br/>
+					Multiply<br/>
+					<br/>
+					exp5 -> ID<br/>
+					ID<br/>
+					<br/>
+					exp5 -> INT<br/>
+					Int<br/>
+					<br/>
+					exp -> LPAREN stm COMMA exp RPAREN<br/>
+					ExpSeq<br/>
+					<br/>
+					expList -> exp COMMA expList<br/>
+					ExpList<br/>
+				</div>
+			</div><br/>
 			
 		</div>
 	</body>
