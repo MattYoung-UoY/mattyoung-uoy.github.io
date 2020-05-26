@@ -51,7 +51,9 @@ body{
 }
 
 #navbar{
-	height: 210%;
+	position: fixed;
+	top: 6.7%;
+	height: 100%;
 	width: 20%;
 	float: left;
 	border-right: 0.1em solid rgb(80, 80, 80);
@@ -80,7 +82,6 @@ h2{
 
 ul{
 	background-color: rgb(190, 190, 190);
-	position: sticky;
 	top: 0;
 	overflow: auto;
 }
