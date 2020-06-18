@@ -19,6 +19,46 @@
 			</ul>
 		</div>
 		<div id="content"><br/>
+			<h2 id="title">Straight Line Language Lexer</h2><br/>
+			
+			<h3>Setup:</h3><br/>
+			I downloaded the <a href="https://www.cs.princeton.edu/~appel/modern/java/chap2/" id="niceln">skeleton code</a> from the Author's website, and put it into an Eclipse environment.<br/><br/>
+			
+			<h3>Creating the Lexer:</h3><br/>
+			To generate the Lexer using JFlex, I needed to create a specification file that would tell JFlex what functionality I would like in the generated Lexer.<br/>
+			To begin with, I specified the package that the Lexer class would be contained within, and which classes it would need to import:<br/><br/>
+			
+			<div id="formcontainer">
+				<div id="formulabox">
+					package lex;<br/><br/>
+
+					import java_cup.runtime.Symbol;<br/>
+					import errorMsg.ErrorMsg;<br/>
+					import java.io.BufferedReader;<br/>
+				</div>
+			</div><br/>
+			
+			After this I began to specify required features that my desired Lexer would require:<br/><br/>
+			
+			<div id="formcontainer">
+				<div id="formulabox">
+					%class Yylex<br/>
+					%unicode<br/>
+					%line<br/>
+					%column<br/>
+					%cup<br/>
+					%char<br/>
+				</div>
+			</div><br/>
+			
+			%class Yylex specifies that the name of the resulting class file should be Yylex.<br/>
+			%unicode specifies that the source files will use unicode encoding.<br/>
+			%line and %comlumn enable counters to keep track of the current line and column that the Lexer is reading.
+			This allows error messages to provide useful information about where the error occured.<br/>
+			%cup enables "Cup compatibility mode" which defines the method that returns the next token to be called next_token which returns an object of java_cup.runtime.Symbol.
+			This also specifies what to do when the Lexer reads the End Of File (EOF) marker, however we overwrite this later.
+			It also causes the Lexer to close the input stream after reading the file.<br/>
+			%char enables a counter to count how many characters have been read since the start of the file. Like %line and %column, this is also useful for user-friendly error reporting.<br/>
 		</div>
 	</body>
 
