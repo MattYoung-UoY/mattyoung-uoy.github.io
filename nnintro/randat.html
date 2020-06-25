@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+	<head>		
+		<title alt="Project Showcase. Matt Young.">Project Showcase - Matt Young</title>
+		<link rel="stylesheet" href="../stylesheet.css">
+		<script src="../navbar.js"></script>
+		<meta charset="UTF-8">
+	</head>
+
+	<body onload="load()" onresize="resize()" onscroll="update()">
+		<div id="titleBar">
+			<a id="title"  href="../index.html"><h1 alt="Project Showcase. Matt Young.">Project Showcase - Matt Young</h1></a>
+		</div>
+		<div id="navbar">
+			<ul>
+				<a href="../index.html"><li>Home</li></a>
+				<a href="../projects.html"><li>Projects</li></a>
+			</ul>
+		</div>
+		<div id="content"><br/>
+			<h2 id="title">Randomly Generated Datasets</h2><br/>
+			I began by creating a new Eclipse project for the Perceptron program.<br/>
+			The first class that I created was the Main class, which would contain the Main method.<br/>
+			I then created the Classifier Functional Interface.
+			This contains the public int classify(float x, float y) which would classify a certain 2D piece of data into an interger value.
+			I chose to classify into integer values as this would allow me to classify boolean values (represented by 0 and 1) or multi-valued outputs, eg. colour (red = 0, blue = 1, green = 2, purple = 3, ...).<br/>
+			After this, I created the DataPoint class.
+			This class has two constructors. 
+			The first one allows the user to specifiy the classification of that data point.
+			The second one allows the user to specify the point and a Classifier implementation, and the constructor will use the Classifier to classify the data point.
+			This class also has getters for the x, y, and classification values, as well as a toString method to allow for user-friendly printing of DataPoint objects.<br/>
+			The last class to create was the DataSet class.
+			This class contains a static method DataPoint[] genDataSet(float minX, float maxX, float minY, float maxY, int num, Classifier classifier).
+			genDataSet returns an array containing num instances of the DataPoint class, each of which contain values from minX-maxX and minY-maxY inclusive.
+			The generated data points are given the specified classifier so that they can be classified and used as training data.<br/>
+			Then in the Main method I generated an array of 5 DataPoint instances and classified them using the ternary operator:<br/><br/>
+			
+			<div id="formcontainer">
+				<div id="formulabox">
+				(x > y ? 0 : 1)<br/>
+				</div>
+			</div><br/>
+			
+			I then printed these values to confirm that the Random DataSet Generator was working.
+			
+		</div>
+	</body>
+
+</html>
