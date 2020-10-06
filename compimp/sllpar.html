@@ -159,8 +159,97 @@
 					<br/>
 					expList -> exp COMMA expList<br/>
 					ExpList<br/>
+					expList -> exp<br/>
+					Exp<br/>
 				</div>
 			</div><br/>
+			
+			For each of these productions, a node will be created on a tree which will either be a leaf node, or will have child nodes.
+			Nodes contain a token, and any child nodes that it may have.
+			Tokens contain values eg. an INT token will contain the int value associated with it.<br/>
+			To illustrate which actions I took for which productions, I will use the notation (TokID, Value, ChildNodes).
+			TokID is the token to place in that node.
+			Value is the value associated with that token.
+			ChildNodes is the number of child nodes that the specified node should have.<br/>
+			The Semantic actions for the chosen productions are:<br/><br/>
+			
+			<div id="formcontainer">
+				<div id="formulabox">
+					Statement: (STM, null, 2)<br/>
+					<br/>
+					Assignment: (ASSIGN, null, 2)<br/>
+					<br/>
+					Print: (PRINT, null, getCounter())<br/>
+					<br/>
+					ID: (ID, id, null)<br/>
+					<br/>
+					Subtract: (SUB, null, 2)<br/>
+					<br/>
+					Plus: (PLUS, null, 2)<br/>
+					<br/>
+					Divide: (DIV, null, 2)<br/>
+					<br/>
+					Multiply: (MULT, null, 2)<br/>
+					<br/>
+					Int: (INT, num)<br/>
+					<br/>
+					ExpSeq: (EXPSEQ, null, 2)<br/>
+					<br/>
+					ExpList: incrementCounter()<br/>
+					<br/>
+					Exp: incrementCounter()<br/>
+				</div>
+			</div><br/>
+			
+			You will see that the final two productions call an incrementCounter function, and that the number of child nodes for the PRINT node is getCounter().
+			This is because a PRINT statement contains an Expression List, which can have any number of expressions in it (at least one).
+			This means that we need to count the number of expressions created with a counter variable.
+			Whenever we parse an expression, we call incrementCounter() to increment the counter variable.
+			Whenever we parse a Print statement, we call getCounter() to get the current value of the counter for the number of child nodes.
+			A side effect of calling getCounter is that the counter variable is reset to 0, so that it is ready for the next Print statement.<br/>
+			<br/>
+			These generated nodes are placed on a stack.
+			Whenever a node is created that requires child nodes, the number of child nodes is popped off the stack, and given to the new node.
+			This new node is then placed on the top of the stack, and the next production is executed.
+			Here is an example parsing of the expression a:=1+b*4; with the values on the stack at each step of the parsing:<br/>
+			<br/>
+			
+			<div id="formcontainer">
+				<div id="formulabox">
+					Exp: a:=1+b*4;<br/>
+					Stack:<br/>
+					<br/>
+					Exp: a:=1+b*4<br/>
+					Stack:<br/>
+					<br/>
+					Exp: :=1+b*4<br/>
+					Stack: ID(a)<br/>
+					<br/>
+					Exp: :=+b*4<br/>
+					Stack: INT(1) ID(a)<br/>
+					<br/>
+					Exp: :=+*4<br/>
+					Stack: ID(b) INT(1) ID(a)<br/>
+					<br/>
+					Exp: :=+*<br/>
+					Stack: INT(4) ID(b) INT(1) ID(a)<br/>
+					<br/>
+					Exp: :=+<br/>
+					Stack: MULT(ID(b), INT(4)) INT(1) ID(a)<br/>
+					<br/>
+					Exp: :=<br/>
+					Stack: PLUS(INT(1), MULT(ID(b), INT(4))) ID(a)<br/>
+					<br/>
+					Exp: <br/>
+					Stack: ASSIGN(ID(a), PLUS(INT(1), MULT(ID(b), INT(4))))<br/>
+				</div>
+			</div><br/>
+			
+			You may have noticed that the order in which the tokens are placed into the new token is the reverse of the order that they would be popped off of the stack in.
+			This is because if we have a statement like a:=7-4 the order of the operands for the subtraction operator is important, and therefore has to be maintained.
+			Hence why the order of the popped tokens is reversed before placing them in the new token.<br/>
+			At the end of parsing, we should have just one node left.
+			This is the root node of our Abstract Syntax Tree, which we can then use to traverse over the tree in later steps of the compiler.<br/>
 			
 		</div>
 	</body>
