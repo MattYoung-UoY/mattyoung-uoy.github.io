@@ -20,6 +20,10 @@ body{
 	word-wrap: break-word;
 }
 
+tab{
+	margin-left: 40px;
+}
+
 #titleBar{
 	background-color: rgb(160, 210, 255);
 	border-bottom: 0.1em solid rgb(80, 80, 80);

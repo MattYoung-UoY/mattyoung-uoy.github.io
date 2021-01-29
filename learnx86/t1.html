@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+	<head>		
+		<title alt="Project Showcase. Matt Young.">Project Showcase - Matt Young</title>
+		<link rel="stylesheet" href="../stylesheet.css">
+		<script src="../navbar.js"></script>
+		<meta charset="UTF-8">
+	</head>
+
+	<body onload="load()" onresize="resize()" onscroll="update()">
+		<div id="titleBar">
+			<a id="title"  href="../index.html"><h1 alt="Project Showcase. Matt Young.">Project Showcase - Matt Young</h1></a>
+		</div>
+		<div id="navbar">
+			<ul>
+				<a href="../index.html"><li>Home</li></a>
+				<a href="../projects.html"><li>Projects</li></a>
+			</ul>
+		</div>
+		<div id="content"><br/>
+			<h2>Tutorial 1: Hello World</h2><br/>
+			
+			<h3>Exit Codes:</h3><br/>
+			
+			As Assembly is so low level, some features that programmers may take for granted when using higher level languages are not available to us.
+			One of these features is exiting our program properly.<br/>
+			In higher level languages such as Java or Python, we can just let our code run to completion.
+			However, if you have programmed in C, C++, etc. you may know that the main method returns an Integer.
+			This is the exit-code for the program.<br/>
+			Java and Python handle the exit-code for us at the end of the program.
+			C and it's variants require us to return a value from the main method.<br/>
+			However, neither of these are done for us when we are writing assembly code.
+			To properly exit the program, we need to provide an exit code, and then use an interrupt to let the Operating System know that our program is finished executing.
+			You may be able to just let the assembly program terminate without doing any of this, but I haven't tried it, and I wouldn't recommend it.<br/><br/>
+			
+			The first task was to write a program to test out returning an exit-code.
+			The code for this is inside of the <a href="https://github.com/MattYoung-UoY/x86_tutorials_davy_wybiral/blob/master/tut1/ex1.s" id="niceln">ex1.s file</a> in the repository, as well as below:<br/><br/>
+			
+			<div id="formcontainer">
+				<div id="formulabox">
+				.global _start<br/>
+				_start:<br/>
+				<tab/>mov $1, %eax<br/>
+				<tab/>mov $42, %ebx<br/>
+				<tab/>sub $29, %ebx<br/>
+				<tab/>int $0x80<br/>
+				</div>
+			</div><br/>
+			
+			The first two lines deal with creating an entry point for the program.
+			The ".global _start" makes the _start identifier available to the Linker.
+			"_start:" creates a label that identifies a location in our code.<br/><br/>
+			
+			The following two lines load the integer values 1 and 42 into the General Purpose Registers eax and ebx respectively.
+			The line of code "sub $29, %ebx" subtracts 29 from the value in the ebx register.<br/><br/>
+			
+			The last line "int 0x80" calls the interrupt handler.
+			The hex number 0x80 tells the interrupt handler that we want to make a system call.
+			The type of system call that is made is determined by the contents of the eax register.
+			As the contents of the eax register is 1, the system call will be an exit call.
+			The contents of the ebx register will be the exit-code for our program.<br/><br/>
+			
+			Executing the code requires a few steps:<br/>
+			First we run the command "gcc -m32 ex1.s -o ex1.o".
+			This uses the GCC Assembler to assemble our code.
+			The "-m32" flag signals to GCC that instead of outputting the code for a 64-bit system (which is the default for my system as it is a 64-bit machine), it should output the code for a 32-bit machine.
+			We need to do this as we are writing x86 assembly, and not x86_64 assembly.
+			"ex1.s -o ex1.o" part of the command tells the assembler that ex1.s is the source file, and that it should output the Object File to a file called ex1.o.<br/><br/>
+			The next command to run is "ld ex1.o -o ex1".
+			This uses the ld program which is a linker to link our object file into an executable.
+			"-o ex1" specifies that ex1 should be the name of the generated executable.<br/><br/>
+			We can then run "./ex1" to run the code.
+			Our code has now executed!<br/><br/>
+			In order to see the exit-code of our program we can use the command "echo $?".
+			When this command is used, the output is "13" which is the exit-code for our program (it was 42, but we then subtracted 29 to get 13).<br/><br/>
+			
+			<h3>Hello World:</h3><br/><br/>
+			
+			
+		</div>
+	</body>
+
+</html>
