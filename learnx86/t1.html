@@ -75,8 +75,32 @@
 			In order to see the exit-code of our program we can use the command "echo $?".
 			When this command is used, the output is "13" which is the exit-code for our program (it was 42, but we then subtracted 29 to get 13).<br/><br/>
 			
-			<h3>Hello World:</h3><br/><br/>
+			<h3>Hello World:</h3><br/>
 			
+			So now we can run a basic shell program which will form the basis of all future x86 assembly programs.
+			Our next step is to actually create the Hello World program.
+			Here is the code:<br/><br/>
+			
+			<div id="formcontainer">
+				<div id="formulabox">
+				global _start<br/><br/>
+
+				.section .data<br/>
+				msg:	.ascii "Hello, world!\n"<br/>
+					<tab/>len = . - msg<br/><br/>
+	
+				.section .text<br/>
+				_start:<br/>
+					<tab/>mov $4, %eax<br/>
+					<tab/>mov $1, %ebx<br/>
+					<tab/>mov $msg, %ecx<br/>
+					<tab/>mov $len, %edx<br/>
+					<tab/>int $0x80<br/>
+					<tab/>mov $1, %eax<br/>
+					<tab/>mov $0, %ebx<br/>
+					<tab/>int $0x80<br/>
+				</div>
+			</div><br/>
 			
 		</div>
 	</body>
