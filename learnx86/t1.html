@@ -79,7 +79,7 @@
 			
 			So now we can run a basic shell program which will form the basis of all future x86 assembly programs.
 			Our next step is to actually create the Hello World program.
-			Here is the code:<br/><br/>
+			Here is the code from the ex2.s file:<br/><br/>
 			
 			<div id="formcontainer">
 				<div id="formulabox">
@@ -102,6 +102,30 @@
 				</div>
 			</div><br/>
 			
+			As before, we have a "global _start" instruction, and the last three lines that create an intrerrupt to exit the program.</br>
+			First off I am going to focus on lines 3-5.
+			".section .data" indicates to the linker that this part specifies data that is defined before executing the application.
+			This makes sense as the next line "msg:	.ascii "Hello, World!\n"" creates a section in memory that stores the ASCII text "Hello, World!" followed by a newline character.
+			"len = . - msg" is probably the most interesting part of the data section.
+			This creates a label called len.
+			Len is set to the integer that is represented by the expression ". - msg".
+			The . means the current memory address that we are at, in this case, the memory address where len is located, which also happens to be right after the msg value.
+			"- msg" subtracts the location in memory where the msg value is found.
+			This expression results in the value that represents the length of the text that is contained in msg.</br>
+			The next part that is new is the ".section .text" instruction. This simply tells the linker that the lines after this contain code that can be executed.</br>
+			Next up is the first interrupt that we perform, which looks a bit different to the interrupts that we have performed before.
+			As with the previous Interrupts that we used to stop the program, we load a value (in this case a value of 4) into the eax register.
+			This signals that we are using the interrupt with ID 4, which is the Write Interrupt.
+			This Interrupt takes three parameters, each stored in the ebx, ecx, and edx regsiters respectively.</br>
+			The first parameter, stored in ebx, is the "file descriptor", which has been set to 1.
+			This specifies what the Interrupt is meant to write to.
+			In the case of the value of 1, this means to write to Standard Output, also known as the console.</br>
+			The second parameter, stored in ecx, is a pointer to the "buffer" that stores the data that we want to write.
+			In this case, it is the memory address provided by the msg label.</br>
+			The last parameter which is stored in edx is the length of the data to write.
+			For this program it is the length of the text that we want to write to the console.</br>
+			Now that all of the code is written, we can compile and link our code and execute it.
+			And when we do, we are greeted with the very simple, but much appreciated message of "Hello, World!".
 		</div>
 	</body>
 
