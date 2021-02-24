@@ -19,6 +19,38 @@
 			</ul>
 		</div>
 		<div id="content"><br/>
+			<h2>Tutorial 2: Comparing and Jumping<h2/><br/>
+			
+			<h3>Intro:</h3><br/>
+			
+			One of the most important registers in the CPU is the Program Counter (PC).
+			The PC holds the memory address of the current instruction, and is incremented at the end of each instruction cycle.
+			This incrementation sets the CPU to read the next instruction at the start of the next instruction cycle.<br/>
+			
+			We can't manipulate this register like other regsiters.
+			Instead, we manipulate it indirectly via "Jump" instructions.<br/>
+			
+			To illustrate this, here is the code for <a href="https://github.com/MattYoung-UoY/x86_tutorials_davy_wybiral/blob/master/tut2/ex3.s" id="niceln">ex3.s</a>:<br/><br/>
+			
+			<div id="formcontainer">
+				<div id="formulabox">
+				.global _start<br/><br/>
+
+				.section .text<br/>
+				_start:<br/>
+					<tab/>mov $99, %ecx<br/>
+					<tab/>mov $42, %ebx<br/>
+					<tab/>mov $1, %eax<br/>
+					<tab/>cmp $100, %ecx<br/>
+					<tab/>jl skip<br/>
+					<tab/>mov $13, %ebx<br/>
+				skip:<br/>
+					<tab/>int $0x80<br/>
+				</div>
+			</div><br/>
+			
+			
+			
 		</div>
 	</body>
 
