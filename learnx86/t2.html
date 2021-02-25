@@ -49,6 +49,51 @@
 				</div>
 			</div><br/>
 			
+			We begin by moving the value 99 into ecx.
+			In preparation for an interrupt, we move 1 and 42 into eax and ebx respectively.<br/>
+			The next line contains a new instruction: "cmp $100, %ecx".
+			This compares the value in ecx to the value of 100.
+			In this case ecx contains 99, which is less than 100.
+			Therefore this sets the lt (less than) flag in the CPUs flags regsiter.<br/>
+			We then execute the "jl skip" instruction.
+			If the lt flag is set this instruction sets the instruction counter to the value represented by the "skip" label, which then causes the CPU to execute the code after the skip label.<br/>
+			As 99 is less than 100, the next line "move $13, %ebx" is skipped and the exit code remains set to 42.<br/>
+			This implements an if statement, and is equivalent to the high-level (pseudo) code:<br/><br/>
+			
+			<div id="formcontainer">
+				<div id="formulabox">
+				a = 42<br/>
+				b = 99<br/>
+				if(b >= 100)<br/>
+					<tab/>a = 13<br/>
+				exit(a)<br/>
+				</div>
+			</div><br/>
+			
+			<h3>Calculating powers of 2:</h3><br/>
+			
+			Here is the code for <a href="https://github.com/MattYoung-UoY/x86_tutorials_davy_wybiral/blob/master/tut2/ex4.s" id="niceln">ex4.s</a>:<br/><br/>
+			
+			<div id="formcontainer">
+				<div id="formulabox">
+				.global _start<br/><br/>
+
+				.section .text<br/>
+				_start:<br/>
+					<tab/>mov $1, %ebx<br/>
+					<tab/>mov $6, %ecx<br/>
+				label:<br/>
+					<tab/>add %ebx, %ebx<br/>
+					<tab/>dec %ecx<br/>
+					<tab/>cmp $0, %ecx<br/>
+					<tab/>jg label<br/>
+					<tab/>mov $1, %eax<br/>
+					<tab/>int $0x80<br/>
+				</div>
+			</div><br/>
+			
+			We begin by loading 1 and 6 into the ebx and ecx registers respectively.
+			After this, a label called "label" is created so that we can jump back to this point.
 			
 			
 		</div>
