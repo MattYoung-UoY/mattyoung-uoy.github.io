@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+	<head>		
+		<title alt="Project Showcase. Matt Young.">Project Showcase - Matt Young</title>
+		<link rel="stylesheet" href="../stylesheet.css">
+		<script src="../navbar.js"></script>
+		<meta charset="UTF-8">
+	</head>
+
+	<body onload="load()" onresize="resize()" onscroll="update()">
+		<div id="titleBar">
+			<a id="title"  href="../index.html"><h1 alt="Project Showcase. Matt Young.">Project Showcase - Matt Young</h1></a>
+		</div>
+		<div id="navbar">
+			<ul>
+				<a href="../index.html"><li>Home</li></a>
+				<a href="../projects.html"><li>Projects</li></a>
+			</ul>
+		</div>
+		<div id="content"><br/>
+			<h2>Implementing an LSM on an FPGA</h2><br/>
+			The original aim of the project was to implement a Liquid State Machine(LSM) on a Field-Programmable Gate Array(FPGA). The system would then be benchmarked using NARMA-10 and a final speech recognition task performed with it.<br/><br/>
+			The system was designed and tested using VHSIC Hardware Description Language(VHDL), the GitHub Repository for which can be found <a href="https://github.com/York-Bio-inspired-Systems-and-Tech/SumOfRes-VHDL" id="niceln">here</a>.<br/><br/>
+			A Transpiler was also concieved to convert from a simple textual description of the desired LSM, and produce the necessary VHDL to implement the LSM. The GitHub Repository for this can be found <a href="https://github.com/York-Bio-inspired-Systems-and-Tech/SumOfRes-NodeTranspiler" id="niceln">here</a>.<br/><br/>
+			<h3>Posts:</h3><br/>
+			<a href="#" id="niceln">LSM Introduction</a><br/>
+			<a href="#" id="niceln">Input Node</a><br/>
+			<a href="#" id="niceln">Reservoir Node Mk1</a><br/>
+			<a href="#" id="niceln">Reservoir Node Mk2</a><br/>
+			<a href="#" id="niceln">Output Node Mk1</a><br/>
+			<a href="#" id="niceln">Reservoir Node Mk3</a><br/>
+			<a href="#" id="niceln">Output Node Mk2</a><br/>
+			<a href="#" id="niceln">Reservoir Node Mk4</a><br/>
+			<a href="#" id="niceln">Test Reservoir</a><br/><br/>
+			<a href="#" id="niceln">SNN Description to VHDL Transpiler</a><br/><br/>
+			<a href="#" id="niceln">VHDL File Overview</a><br/><br/>
+			<h3>Future Work:</h3><br/>
+				Generalised Node and Component designs.<br/>
+				SNN Description to VHDL Transpiler.<br/>
+				Testing on FPGA.<br/>
+				NARMA-10 Benchmark.<br/>
+				Voice Recognition.<br/>
+		</div>
+	</body>
+
+</html>
