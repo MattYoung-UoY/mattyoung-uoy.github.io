@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+	<head>		
+		<title alt="Project Showcase. Matt Young.">Project Showcase - Matt Young</title>
+		<link rel="stylesheet" href="../stylesheet.css">
+		<script src="../navbar.js"></script>
+		<meta charset="UTF-8">
+	</head>
+
+	<body onload="load()" onresize="resize()" onscroll="update()">
+		<div id="titleBar">
+			<a id="title"  href="../index.html"><h1 alt="Project Showcase. Matt Young.">Project Showcase - Matt Young</h1></a>
+		</div>
+		<div id="navbar">
+			<ul>
+				<a href="../index.html"><li>Home</li></a>
+				<a href="../projects.html"><li>Projects</li></a>
+			</ul>
+		</div>
+		<div id="content"><br/>
+			<h2>Initial Design</h2><br/>
+			
+			The board needed to be able to implement certain Digital Logic Functions, the main examples being Full Adders, and a variety of Flip-Flops.<br/><br/>
+			
+			Looking at the gates required, each Full Adder would require 2 XOR Gates, 2 AND Gates, and 1 Or Gate. A Full-Subtractor would require 2 NOT Gates in addition to these.<br/>
+			Each Logic Gate Integrated Circuit (IC) can support 4 logic gates (with the exception of the NOT IC, which can support 6 NOT Gates).<br/>
+			With this information, I decided I would use 2 of each of the XOR, AND, OR and NOT ICs.
+			Only 1 OR IC is needed to implement the desired functions, but for the sake of symmerty (which may lead to easier design) I decided to include 2 ICs like the others.<br/>
+			This will allow for the creation of a 4-bit Full Adder, which is a nice amount, and can be used as a convinient segway into the world of Hexadecimal Numbers.<br/><br/>
+			
+			
+		</div>
+	</body>
+
+</html>
