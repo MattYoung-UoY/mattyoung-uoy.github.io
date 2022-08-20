@@ -29,7 +29,14 @@
 			Only 1 OR IC is needed to implement the desired functions, but for the sake of symmerty (which may lead to easier design) I decided to include 2 ICs like the others.<br/>
 			This will allow for the creation of a 4-bit Full Adder, which is a nice amount, and can be used as a convinient segway into the world of Hexadecimal Numbers.<br/><br/>
 			
+			The Flip-Flops mainly required 4 NAND Gates per Flip-Flop.
+			As with the other Logic ICs, the NAND IC can support 4 NAND Gates.
+			I wanted to have the facility for 4 Flip-Flops, one for each bit, and therefore required 4 NAND ICs.<br/><br/>
 			
+			I also decided that a button should be added, as some of the Flip-Flops require a clock signal, and this is a nicer way to implement a clock pulse, rather than by temporarily connecting the clock line to +5V.
+			This also works nicely for Flip-Flops that instead use a Reset line.
+			In addition to this, I also decided to have 16 LEDs.
+			This works out as 2 sets of 4 LEDs for each 4-bit input to a 4-bit Full Adder, 1 set of 4 LEDs for the output from the 4-bit Full Adder, and 1 set of 4 LEDs for the 4-bits stored by the Flip-Flops.
 		</div>
 	</body>
 
